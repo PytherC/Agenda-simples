@@ -2,44 +2,40 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Calendário Agenda</title>
-  <link rel="stylesheet" type="text/css" href="calendario.css" media="screen" />
+  <title>Agenda</title>
+  <link rel="stylesheet" type="text/css" href="calendario.css">
 </head>
-
 <body>
-    <header>
 
-        <div class="menu">
+    <div class="menu">
 
-            <div class="logo"> <img src="img/alphabranco.png" width="80" height="80" alt="Logo da pagina"> </div>
-                <h1 class="titulo">Calendário Agenda</h1>
-          
-        </div>
-        
+        <div class="logo"> <img src="img/alphabranco.png" width="80" height="80" alt="Logo da pagina"> </div>
+            <h1 class="titulo">Calendário Agenda</h1>
+    </div>
+
+<div id="agenda">
+  <h1>Crie um novo evento</h1>
+
   <form id="form-criar-evento">
-    <h1 class="tituloforms">Crie um novo evento</h1>
     <label for="data">Data:</label>
-    <input type="date" id="data" name="data">
-    <br>
-    <label for="hora">Hora:</label>
-    <input type="time" id="hora" name="hora">
-    <br>
+    <input type="date" id="data" required>
+    
+    <label for="hora">Horário:</label>
+    <input type="time" id="hora" required>
+    
     <label for="titulo">Título:</label>
-    <input type="text" id="titulo" name="titulo">
-    <br>
+    <input type="text" id="titulo" required>
+    
     <label for="descricao">Descrição:</label>
-    <textarea id="descricao" name="descricao"></textarea>
-    <br>
-    <label for="destinatarios">Destinatários:</label>
-    <input type="text" id="destinatarios" name="destinatarios">
-    <br>
-    <button id="botaoCriar" type="submit">Criar</button>
+    <textarea id="descricao" style="resize: none" cols="74" rows="3"></textarea>
+    
+    <button type="button" onclick="criarEvento()">Criar Evento</button>
   </form>
 
-  <div id="calendario"></div>
+  <div id="lista-eventos"></div>
 
-  <div class="lista-eventos"></div>
-  <script type="text/javascript" src="calendario.js"></script>
+  <script src="calendario.js"></script>
+</div>
 
 </body>
 </html>

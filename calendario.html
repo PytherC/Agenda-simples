@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Calendário Agenda</title>
+  <link rel="stylesheet" type="text/css" href="calendario.css" media="screen" />
+</head>
+
+<body>
+    <header>
+
+        <div class="menu">
+
+            <div class="logo"> <img src="img/alphabranco.png" width="80" height="80" alt="Logo da pagina"> </div>
+                <h1 class="titulo">Calendário Agenda</h1>
+          
+        </div>
+        
+  <form id="form-criar-evento">
+    <h1 class="tituloforms">Crie um novo evento</h1>
+    <label for="data">Data:</label>
+    <input type="date" id="data" name="data">
+    <br>
+    <label for="hora">Hora:</label>
+    <input type="time" id="hora" name="hora">
+    <br>
+    <label for="titulo">Título:</label>
+    <input type="text" id="titulo" name="titulo">
+    <br>
+    <label for="descricao">Descrição:</label>
+    <textarea id="descricao" name="descricao"></textarea>
+    <br>
+    <label for="destinatarios">Destinatários:</label>
+    <input type="text" id="destinatarios" name="destinatarios">
+    <br>
+    <button id="botaoCriar" type="submit">Criar</button>
+  </form>
+
+  <div id="calendario"></div>
+
+  <div class="lista-eventos"></div>
+  <script type="text/javascript" src="calendario.js"></script>
+
+</body>
+</html>

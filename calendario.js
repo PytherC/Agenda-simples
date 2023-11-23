@@ -1,4 +1,8 @@
-const eventos = [];
+// Tenta obter eventos do armazenamento local
+const eventos = JSON.parse(localStorage.getItem('eventos')) || [];
+
+// Atualiza a lista de eventos ao carregar a página
+atualizarListaEventos();
 
 function criarEvento() {
   const data = document.getElementById("data").value;
@@ -14,6 +18,9 @@ function criarEvento() {
 
   // Atualiza a lista de eventos
   atualizarListaEventos();
+
+  // Salva os eventos no armazenamento local
+  localStorage.setItem('eventos', JSON.stringify(eventos));
 }
 
 function excluirEvento(index) {
@@ -22,6 +29,9 @@ function excluirEvento(index) {
 
   // Atualiza a lista de eventos
   atualizarListaEventos();
+
+  // Salva os eventos no armazenamento local
+  localStorage.setItem('eventos', JSON.stringify(eventos));
 }
 
 function atualizarListaEventos() {

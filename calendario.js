@@ -9,9 +9,16 @@ function criarEvento() {
   const hora = document.getElementById("hora").value;
   const titulo = document.getElementById("titulo").value;
   const descricao = document.getElementById("descricao").value;
+  const email = document.getElementById("e-mail").value; // Adicionado campo de e-mail
+
+  // Verifica se todos os campos obrigatórios estão preenchidos
+  if (!data || !hora || !titulo || !descricao || !email) {
+    alert('Por favor, preencha todos os campos obrigatórios.');
+    return;
+  }
 
   // Cria um objeto evento
-  const evento = { data, hora, titulo, descricao };
+  const evento = { data, hora, titulo, descricao, email }; // Incluído campo de e-mail
 
   // Adiciona o evento ao array
   eventos.push(evento);
@@ -48,6 +55,7 @@ function atualizarListaEventos() {
       <p>Data: ${evento.data}</p>
       <p>Hora: ${evento.hora}</p>
       <p>Descrição: ${evento.descricao}</p>
+      <p>E-mail: ${evento.email}</p> <!-- Mostra o e-mail -->
       <button onclick="excluirEvento(${index})">Excluir</button>
     `;
 

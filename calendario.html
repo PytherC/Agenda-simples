@@ -6,11 +6,11 @@
   <link rel="stylesheet" type="text/css" href="calendario.css">
 </head>
 <body>
+
     <div class="menu">
-        <div class="logo">
-            <img src="img/alphabranco.png" width="80" height="80" alt="Logo da pagina">
-        </div>
-        <h1 class="titulo">Calendário Agenda</h1>
+
+        <div class="logo"> <img src="img/alphabranco.png" width="80" height="80" alt="Logo da pagina"> </div>
+            <h1 class="titulo">Calendário Agenda</h1>
     </div>
 
     <div id="agenda">
@@ -19,25 +19,36 @@
         <form id="form-criar-evento">
             <label for="data">Data:</label>
             <input type="date" id="data" required>
-            
+
             <label for="hora">Horário:</label>
             <input type="time" id="hora" required>
-            
+
             <label for="titulo">Título:</label>
             <input type="text" id="titulo" required>
-            
+
             <label for="descricao">Descrição:</label>
             <textarea id="descricao" style="resize: none" cols="74" rows="3"></textarea>
 
             <label for="e-mail">E-mail:</label>
             <input type="email" id="e-mail" required>
-            
+
             <button type="button" onclick="criarEvento()">Criar Evento</button>
         </form>
 
         <div id="lista-eventos"></div>
 
-        <script src="calendario.js"></script>
     </div>
+
+    <!-- Inclua o script com o atributo defer -->
+    <script src="calendario.js" defer></script>
+
+<!-- Adicione esta linha no head do seu HTML para incluir a biblioteca EmailJS -->
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+<script>
+  // Configure o EmailJS com sua chave pública
+  emailjs.init("IwObc2B7YtZSOwljH");
+</script>
+
 </body>
 </html>

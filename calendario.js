@@ -9,7 +9,10 @@ function criarEvento() {
   const hora = document.getElementById("hora").value;
   const titulo = document.getElementById("titulo").value;
   const descricao = document.getElementById("descricao").value;
-  const email = document.getElementById("e-mail").value; // Adicionado campo de e-mail
+  const emailInput = document.getElementById("e-mail");
+
+  // Adicionado campo de e-mail
+  let email = emailInput.value;
 
   // Verifica se todos os campos obrigatórios estão preenchidos
   if (!data || !hora || !titulo || !descricao || !email) {
@@ -17,8 +20,11 @@ function criarEvento() {
     return;
   }
 
+  // Limpa espaços em branco extras e divide os e-mails
+  const emails = email.split(",").map(e => e.trim());
+
   // Cria um objeto evento
-  const evento = { data, hora, titulo, descricao, email }; // Incluído campo de e-mail
+  const evento = { data, hora, titulo, descricao, email: emails.join(", ") }; // Incluído campo de e-mail
 
   // Adiciona o evento ao array
   eventos.push(evento);
@@ -28,6 +34,18 @@ function criarEvento() {
 
   // Salva os eventos no armazenamento local
   localStorage.setItem('eventos', JSON.stringify(eventos));
+
+  // Envia um e-mail com as informações do evento para todos os e-mails informados no campo "E-mail"
+  for (const email of emails) {
+    enviarEmail(evento, email);
+  }
+
+  // Limpa os valores dos campos do formulário após a criação do evento
+  document.getElementById("data").value = "";
+  document.getElementById("hora").value = "";
+  document.getElementById("titulo").value = "";
+  document.getElementById("descricao").value = "";
+  emailInput.value = "";
 }
 
 function excluirEvento(index) {
@@ -55,11 +73,29 @@ function atualizarListaEventos() {
       <p>Data: ${evento.data}</p>
       <p>Hora: ${evento.hora}</p>
       <p>Descrição: ${evento.descricao}</p>
-      <p>E-mail: ${evento.email}</p> <!-- Mostra o e-mail -->
-      <button onclick="excluirEvento(${index})">Excluir</button>
+      <p>E-mail: ${evento.email}</p> <button onclick="excluirEvento(${index})">Excluir</button>
     `;
 
     // Adiciona o evento à lista
     listaEventos.appendChild(eventoElemento);
   });
+}
+
+function enviarEmail(evento, email) {
+  // Crie um objeto de parâmetros para o modelo de e-mail no EmailJS
+  const templateParams = {
+    titulo: evento.titulo,
+    data: evento.data,
+    hora: evento.hora,
+    descricao: evento.descricao,
+    email: email,
+  };
+
+  // Use o método 'send' do EmailJS para enviar o e-mail
+  emailjs.send("service_f638rr3", "template_x2kqx7s", templateParams)
+    .then(function(response) {
+      console.log("E-mail enviado com sucesso para:", email);
+    }, function(error) {
+      console.log("Erro ao enviar o e-mail para:", email, "Erro:", error);
+    });
 }
